@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>ajax4</title>
+</head>
+<body>
+
+<div id="div1">
+    <p id="p1">第一段</p>
+
+    <p id="p2">第二段</p>
+</div>
+
+<script type="text/javascript">
+    /*-----------------------------------------
+     javascript dom创建元素
+     DOm:文档对象模型
+     document对象
+
+     1：创建新的HTML元素
+        要点：向已有的元素追加该元素
+     <div id="div1">
+     <p id="p1">第一段</p>
+     <p id="p2">第二段</p>
+     </div>
+     如果想要用js创建元素：
+     1-首先创建元素新元素
+     2-创建元素的节点
+     3-向已有函数追加该元素
+
+     2： 删除已有的HTML元素
+
+     <div id="div1">
+     <p id="p1">第一段</p>
+     <p id="p2">第二段</p>
+     </div>
+     <script>
+     var ele = document.getElementById("div1");
+     var child = document.getElementById("p1");
+     ele.removeChild(child);
+     <script>
+
+
+     ------------------------------------------*/
+    var param = document.createElement("p");
+    var node = document.createTextNode("想把我唱给你听！");
+    param.appendChild(node);
+    var ele = document.getElementById("div1");
+    ele.appendChild(param);
+
+
+
+    var ele = document.getElementById("div1");
+    var child = document.getElementById("p1");
+    ele.removeChild(child);
+
+
+
+</script>
+</body>
+</html>

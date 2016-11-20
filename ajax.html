@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>ajax基础</title>
+</head>
+<body>
+
+<input type="button" onclick="doAjax()"/><br/>
+
+<script type="text/javascript">
+    /*-------------------------------------
+    A:http请求
+    XMLHttpRequest
+
+    B:XMLHttpRequest对象
+      request = new XMLHttpRequest(){}--firefox-opera-safari
+      xmlhttp = new ActiveXObject('Msxml2.XMLHTTP')-IE6+
+      xmlhttp = new ActiveXObject('Microsoft,XMLHTTP')
+
+     C:ajax属性
+        1：onreadystatechange
+
+        request.onreadystatechange = function(){
+        //写你的代码if语句判断响应是否完成
+        if(request,readyState == 4){
+        //从服务器获取数据代码，并做相应的处理
+        alert（request。responseText）；
+        }
+
+        2：readyState属性--每一次的改变都会调用onreadyState函数
+           0：请求未初始化
+           1：请求提出
+           2：请求已发送
+           3:服务器在处理中
+           4:服务器相应完成
+
+        3：responseText属性---获取服务器返回的数据
+          a:open（）
+             --参数一---get/post
+             --参数二---url
+             --参数三---异步处理标志
+
+          b:send()-----可以将请求发到服务器端
+
+               request.open("GET","test.txt", true);
+               request.onreadystatechange = function (){
+                if(判断浏览器类型){}
+                else if(处理兼容问题){}
+                else{}
+               }
+
+               request.send(null);
+
+
+
+     --------------------------------------*/
+ function doAjax(the_request){
+    var request=null;
+     if(window.XMLHttpRequest){
+    request = new XMLHttpRequest();
+     }else if(window.ActiveXObject){
+      request = new ActiveXObject('Microsoft.XMLHTTP');
+     }else{
+         alert("你的浏览器不支持ajax");
+         return false;
+     }
+
+
+
+
+ }
+</script>
+</body>
+</html>

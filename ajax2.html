@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>ajax基础</title>
+</head>
+<body>
+<script type="text/javascript">
+    /*-------------------------------------
+     Ajax读取文件--发送文件请求去服务器端获取网址/文件地址通过返回给我们的Ajax相应的处理
+     1创建数据文件--相应的网页HTML文件和数据TXT文件
+     2创建XMLHttpRequest对象
+     3获取文件
+     注意点：1）在服务器端运行测试-ajax是依赖JavaScript的
+     2）注意编码的问题，保证开发工具和网页编码要统一
+     4获取TXT文件
+
+
+
+     1-要熟悉xmlhttp对象对象属性及方法
+
+
+     步骤如下：
+     函数1-定义一个全局变量--------------var  xmlHttp = null;
+     函数2-ajax事件发生变化时调用事件处理函数
+        判断各个状态是否着位
+         对象展示ajax获取的内容
+           document.getElementById().innerHtml=对象.responseText;
+
+     函数3-首先创建xmlHttpRequest对象
+           --不同的浏览器兼容性不一样
+              -- 用catch(){try{事件}}来创建
+
+     函数4-核心函数
+              -函数请求的建立
+              -将之前函数状态的函数赋值给该函数-监控状态函数-
+              -发送函数请求
+
+     事件原理：
+              onclick----调用函数---创建了对象----建立请求---
+     ----------------------------------------- */
+    var xmlHttp = null;
+    function readyStateChangeHandle() {
+        if (xmlHttp.readyState == 4) {
+            if (xmlHttp.status == 200) {
+                document.getElementById("love").innerHTML = xmlHttp.responseText;
+
+            }
+
+        }
+    }
+
+    function ajaxFunction(the_request_url) {
+        try {
+            xmlHttp = new XMLHttpRequest();
+        }
+        catch (e) {
+            try {
+                xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
+            } catch (e) {
+                try {
+                    xmlHttp = new
+                            ActiveXObject("Microsoft.XMLHTTP");
+                } catch (e) {
+                    alert("你的浏览器不支持ajax");
+                }
+            }
+        }
+
+        if (xmlHttp) {
+            xmlHttp.open("GET", the_request_url, true);
+            xmlHttp.onreadystatechange = readyStateChangeHandle;
+            xmlHttp.send();
+        }else{
+            alert("error");
+        }
+    }
+
+
+</script>
+
+<input type="button" id="test" value="获取ajax文件" onclick="javaScript:ajaxFunction('ajax2.txt')"/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div style="border：1px solid red; width:300px;height: 300px"; id="love">桃李不言下自成蹊</div>
+</body>
+</html>

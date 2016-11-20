@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>eval的使用</title>
+</head>
+<body>
+<script type="text/javascript">
+    /*---------------------------------------
+     eval的使用
+     1-定义和用法
+     计算某个字符串，并执行其中的js代码
+     eval(string必须的，并且含有表达式或者执行语句)
+     string有返回值的话
+     注意：eval函数的使用规范，不然会抛出异常
+
+     2-实例
+     2-1字符串上运用eval()
+     eval("x=10;y=20;document.write(x*y)")浏览器显示200
+     eval("x=10;y=20;document.write(x*y)");浏览器显示200
+     document.write(eval("2+2"));浏览器显示4
+     var x=10;
+     document.write(eval(x*10));浏览器输出100；
+
+
+     2-2其他情况中使用eval（）
+     eval("2+3");
+     var myeval =eval;浏览器抛出异常,这不符合eval书写规范
+     如果 document.write(eval("2+3"));则不会抛出异常
+
+
+     try{
+     alert("Result:" + eval(prompt("请输入数字","")))
+     }catch(e){
+
+     alert(e)
+     }先是跳出来一个弹框提示，输入数字之后赋值给eval，eval在计算出来给Result最后alert出来；
+
+
+     2-3使用eval（）解析json格式字符串应注意的问题
+     json:是一种轻量级的数据交换格式
+     var txt ="{'userid':11,'name':'luoyi','lover':'allison'}";
+     var txtObj = eval("("+txt+")");记得要加小括号用字符连接
+     document.write(txtObj.name);
+     document.write("<br/>");
+     document.write(txtObj.lover);
+
+     --------------------------------------------*/
+    var txt =
+            "{'userid':11,'name':'luoyi','lover':'allison'}";
+    var txtObj = eval("(" + txt + ")");
+    document.write(txtObj.name);
+    document.write("<br/>");
+    document.write(txtObj.lover);
+
+
+</script>
+
+</body>
+</html>

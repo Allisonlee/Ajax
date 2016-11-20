@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>ajax入门基础</title>
+</head>
+<body>
+<script type="text/javascript">
+    /*--------------------------------------------
+     A:XMLHttpRequest对象
+
+     不同浏览器创建对象方式不一样：
+     ActiveXObject-----IE6+以上的浏览器
+     针对不同浏览器我们需要一条Catch语句来创建对象：
+     B：运行环境
+     xammp----集成了appche,php,mysql，http服务器
+     环境搭建：
+     下载地址：xampp
+
+     ----------------------------------------*/
+
+    //开始创建对象--不同浏览器创建方式不一样用catch来创建
+
+    function ajaxFunction(the_request_url) {
+        var xmlHttp;
+        try {
+            xmlHttp = new XMLHttpRequest();
+        }
+        catch (e) {
+            try {
+                xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
+            }catch (e){
+                try{
+                    xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }catch (e){
+                    alert("你的浏览器不支持Ajax");
+                    return false;
+                }
+            }
+        }
+
+
+        //开始逻辑代码
+        if(xmlHttp){
+            xmlHttp.open('GET',the_request_url,true);
+            xmlHttp.onreadystatechange = function () {
+                if(xmlHttp.readyState == 4){
+                    if(xmlHttp.status == 200){
+                        document.getElementById('love').innerHTML=xmlHttp.responseText;
+                    }
+                }
+            };
+            xmlHttp.send(null);
+        }else{
+            alert("error");
+        }
+    }
+
+</script>
+<input type="button" id="test" value="test" onclick="javascript:ajaxFunction('ajax2.txt')"/>
+<br/>
+<br/>
+<br/>
+<div id="love"> test ajax</div>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>ajax3获取HTML文档流</title>
+</head>
+<body>
+<script type="text/javascript">
+    var xmlHttp = null;
+    function readyStateChangeHandle(){
+        if(xmlHttp.readyState == 4){
+          if(xmlHttp.status==200){
+             var xmlDOM = xmlHttp.responseXML;
+              var xmlRoot = xmlDOM.documentElement;
+              try{
+                  var xmlItem = xmlRoot.getElementsByTagName("item");
+                  alert(xmlItem[0].firstChild.data);
+              }
+              catch (e){
+                  alert(e.message)
+              }
+          }
+        }
+
+        function ajaxRequest(){
+            if(window.xmlHttpRequest){
+                xmlHttp = new XMLHttpRequest();
+            }
+            else if(window.ActiveXObject){
+                xmlHttp = new
+                        ActiveXObject("Microsoft,XMLHTTP");
+            }else{
+                alert("你的浏览器不支持Aajax")；
+            }
+
+        }
+        xmlHttp.onreadystatechange = readyStateChangeHandle;
+        xmlHttp.open("GET","data.xml",true);
+        xmlHttp.send(null);
+    }
+
+</script>
+<input type="button" onclick="ajaxFunction()"/>
+</body>
+</html>
+ //data.xml
+<?xml version=">
